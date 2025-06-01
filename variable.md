@@ -1,23 +1,6 @@
-# What is Shell command ?
-# What is Bash ?
-# What is Shell script ?
-
 # Print Something 
 ```
 echo "Hello World"
-```
-# Create Folder 
-```
-mkdir foldername
-
-```
-# list the folder and file 
-```
-ls
-```
-# list all teh folder and file even hidden file 
-```
-ls -a
 ```
 # Crate shell script file 
 ```
@@ -46,7 +29,7 @@ name = "Yuvi"
 echo "Name is $name"
 
 ```
-# If your want run command under variable 
+# If your want run command under variable use ()
 ```
 name = "Yuvi"
 echo "Name is $name, and date is $(date)"
@@ -59,7 +42,7 @@ echo "Your name id $username"
 
 ``` 
 
-# add user 
+# add new user 
 ```
 sudo useradd -m $username
 echo "congratulation successfully added"
