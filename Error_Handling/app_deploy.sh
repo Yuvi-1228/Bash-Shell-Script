@@ -20,20 +20,24 @@ install_requirement(){
     sudo apt-get install nginx -y 
     echo "Successfully install nginx..."
     echo "Congratulation ! Successfully Install Requirement"
+    echo "Installing Docker compose"
+    sudo apt-get install docker-compose -y 
+    echo "Successfully install Docker Compose"
 }
 
 # Restart after Installation 
 required_restarts(){
     sudo chown $USER /var/run/docker.sock
-    sudo systemctl enable docker 
-    sudo systemctl enable nginx
-    sudo systemctl restart docker
+    #sudo systemctl enable docker 
+    #sudo systemctl enable nginx
+    #sudo systemctl restart docker
 }
 
 # Deploy app 
 deploy(){
     docker build -t notes-app .
-    docker run -d -p 8000:8000 notes-app:latest
+    #docker run -d -p 8000:8000 notes-app:latest
+    docker-compose up -d 
 }
 
 echo "*********** Deployment Started*********"
@@ -49,5 +53,10 @@ if ! required_restarts; then
     echo "There is identified error"
     exit 1
 fi 
-deploy
+if ! deploy; then
+    echo "Deployment Failed, mailing the admin"
+    # sendmail
+    exit 1
+fi
+
 echo "******************* Deployment Successfully*************"
